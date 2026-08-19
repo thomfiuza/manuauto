@@ -1,32 +1,59 @@
 name: CI
+
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
+
 permissions:
   contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: app
+
     steps:
-     - uses: actions/checkout@v6
-     - uses: actions/setup-node@v6
+      - name: Baixar o repositório
+        uses: actions/checkout@v6
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v6
         with:
-          node-version: 22.12.0
+          node-version: "22.12.0"
           cache: npm
           cache-dependency-path: app/package-lock.json
-      - run: npm ci
-      - run: npm run db:migrate
-      - run: npm run db:seed
-      - run: npm run typecheck
-      - run: npm run test:static
-      - run: npm run test:integration
-      - run: npm run build
-      - name: HTTP smoke
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Aplicar migration
+        run: npm run db:migrate
+
+      - name: Criar dados sintéticos
+        run: npm run db:seed
+
+      - name: Verificar TypeScript
+        run: npm run typecheck
+
+      - name: Executar testes estáticos
+        run: npm run test:static
+
+      - name: Executar testes de integração
+        run: npm run test:integration
+
+      - name: Gerar build
+        run: npm run build
+
+      - name: Executar smoke test HTTP
         run: |
           npm run dev -- --host 0.0.0.0 > /tmp/manuauto.log 2>&1 &
-          for i in {1..30}; do curl -fsS http://localhost:3000/api/health && break; sleep 2; done
+          for i in {1..30}; do
+            curl -fsS http://localhost:3000/api/health && break
+            sleep 2
+          done
           npm run test:smoke
