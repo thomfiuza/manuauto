@@ -14,6 +14,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BibliotecaRouteImport } from './routes/biblioteca'
 import { Route as ConsultaRouteImport } from './routes/consulta'
 import { Route as DicasRouteImport } from './routes/dicas'
+import { Route as HistoricoRouteImport } from './routes/historico'
 import { Route as ModeracaoRouteImport } from './routes/moderacao'
 import { Route as ApiHealthRouteImport } from './routes/api/health'
 import { Route as ApiVehiclesRouteImport } from './routes/api/vehicles'
@@ -44,6 +45,11 @@ const ConsultaRoute = ConsultaRouteImport.update({
 const DicasRoute = DicasRouteImport.update({
   id: '/dicas',
   path: '/dicas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoricoRoute = HistoricoRouteImport.update({
+  id: '/historico',
+  path: '/historico',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModeracaoRoute = ModeracaoRouteImport.update({
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/biblioteca': typeof BibliotecaRoute
   '/consulta': typeof ConsultaRoute
   '/dicas': typeof DicasRoute
+  '/historico': typeof HistoricoRoute
   '/moderacao': typeof ModeracaoRoute
   '/api/health': typeof ApiHealthRoute
   '/api/vehicles': typeof ApiVehiclesRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/biblioteca': typeof BibliotecaRoute
   '/consulta': typeof ConsultaRoute
   '/dicas': typeof DicasRoute
+  '/historico': typeof HistoricoRoute
   '/moderacao': typeof ModeracaoRoute
   '/api/health': typeof ApiHealthRoute
   '/api/vehicles': typeof ApiVehiclesRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/biblioteca': typeof BibliotecaRoute
   '/consulta': typeof ConsultaRoute
   '/dicas': typeof DicasRoute
+  '/historico': typeof HistoricoRoute
   '/moderacao': typeof ModeracaoRoute
   '/api/health': typeof ApiHealthRoute
   '/api/vehicles': typeof ApiVehiclesRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/biblioteca'
     | '/consulta'
     | '/dicas'
+    | '/historico'
     | '/moderacao'
     | '/api/health'
     | '/api/vehicles'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/biblioteca'
     | '/consulta'
     | '/dicas'
+    | '/historico'
     | '/moderacao'
     | '/api/health'
     | '/api/vehicles'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/biblioteca'
     | '/consulta'
     | '/dicas'
+    | '/historico'
     | '/moderacao'
     | '/api/health'
     | '/api/vehicles'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   BibliotecaRoute: typeof BibliotecaRoute
   ConsultaRoute: typeof ConsultaRoute
   DicasRoute: typeof DicasRoute
+  HistoricoRoute: typeof HistoricoRoute
   ModeracaoRoute: typeof ModeracaoRoute
   ApiHealthRoute: typeof ApiHealthRoute
   ApiVehiclesRoute: typeof ApiVehiclesRoute
@@ -208,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/dicas'
       fullPath: '/dicas'
       preLoaderRoute: typeof DicasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/historico': {
+      id: '/historico'
+      path: '/historico'
+      fullPath: '/historico'
+      preLoaderRoute: typeof HistoricoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/moderacao': {
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   BibliotecaRoute: BibliotecaRoute,
   ConsultaRoute: ConsultaRoute,
   DicasRoute: DicasRoute,
+  HistoricoRoute: HistoricoRoute,
   ModeracaoRoute: ModeracaoRoute,
   ApiHealthRoute: ApiHealthRoute,
   ApiVehiclesRoute: ApiVehiclesRoute,
