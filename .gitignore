@@ -1,0 +1,25 @@
+# Dependências e builds
+app/node_modules/
+app/dist/
+app/.output/
+app/.vinxi/
+app/.tanstack/
+
+# Dados locais e documentos privados
+app/.data/
+data/
+*.pdf
+!tests/fixtures/sample-manual.pdf
+
+# Segredos
+.env
+.env.*
+!.env.example
+app/.env
+app/.env.*
+!app/.env.example
+
+# Sistema e logs
+.DS_Store
+*.log
+coverage/

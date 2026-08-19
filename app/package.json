@@ -1,0 +1,59 @@
+{
+  "name": "manuauto",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": "Thomaz Fiuza",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "dev": "npm run db:migrate && vite dev --port 3000",
+    "generate-routes": "tsr generate",
+    "build": "vite build",
+    "start": "node dist/server/server.js",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "tsx scripts/db-migrate.ts",
+    "db:seed": "tsx scripts/seed-local.ts",
+    "test:static": "python3 ../tests/test_project.py",
+    "test:integration": "tsx scripts/test-integration.ts",
+    "test:smoke": "python3 ../tests/http_smoke.py",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1113.0",
+    "@electric-sql/pglite": "0.5.5",
+    "@tanstack/react-router": "1.170.30",
+    "@tanstack/react-start": "1.168.47",
+    "better-auth": "1.7.1",
+    "drizzle-orm": "0.45.2",
+    "lucide-react": "1.32.0",
+    "nodemailer": "9.0.5",
+    "pg": "8.23.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "unpdf": "1.7.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@tanstack/router-cli": "1.167.31",
+    "@types/node": "22.20.1",
+    "@types/nodemailer": "8.0.1",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@vitejs/plugin-react": "6.0.5",
+    "tsx": "4.23.12",
+    "typescript": "6.0.3",
+    "vite": "8.2.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lightningcss"
+    ]
+  }
+}
