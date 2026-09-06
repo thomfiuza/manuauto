@@ -23,3 +23,6 @@ app/.env.*
 .DS_Store
 *.log
 coverage/
+
+# Backups locais
+backups/

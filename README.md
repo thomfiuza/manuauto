@@ -10,17 +10,29 @@ O Manuauto consulta manuais de carros e motos, preserva a página de origem e ma
 
 - autenticação própria e sessões HttpOnly;
 - funções de usuário, moderador e administrador;
-- biblioteca privada de PDFs;
+- biblioteca privada de PDFs com painel de processamento;
 - upload, SHA-256, deduplicação e limite de tamanho;
+- **processamento assíncrono em fila** (o upload responde imediato);
 - extração de PDF e segmentação por página;
 - busca textual em português sem custo de IA;
+- **busca tolerante**: ignora acentos, plurais e erros de digitação;
+- **resposta extrativa sem IA** (resumo direto das passagens citadas);
+- **confirmação de solução** ("isso resolveu?") nas respostas;
 - PostgreSQL/pgvector preparado para busca híbrida;
 - citações de documento, seção e página;
 - recomendações comunitárias pendentes de revisão;
+- **denúncia de contribuições** (volta para a fila de revisão);
 - moderação e votos;
+- **catálogo de veículos gerenciável pela equipe**;
+- **curadoria de vídeos de demonstração**;
+- histórico de consultas com paginação;
+- **perfil com direitos LGPD**: exportação e exclusão da conta;
+- **termos de uso e política de privacidade** com fluxo de remoção autoral;
+- **trilha de auditoria** (tabela + log estruturado) e tela para a equipe;
 - armazenamento local ou S3 compatível;
+- script de backup local (`npm run backup`);
 - PWA básica;
-- health check e testes automatizados.
+- health check com estado da fila e testes automatizados.
 
 ## Stack
 

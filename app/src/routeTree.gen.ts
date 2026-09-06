@@ -16,6 +16,11 @@ import { Route as ConsultaRouteImport } from './routes/consulta'
 import { Route as DicasRouteImport } from './routes/dicas'
 import { Route as HistoricoRouteImport } from './routes/historico'
 import { Route as ModeracaoRouteImport } from './routes/moderacao'
+import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as TermosRouteImport } from './routes/termos'
+import { Route as VeiculosRouteImport } from './routes/veiculos'
+import { Route as VideosRouteImport } from './routes/videos'
 import { Route as ApiHealthRouteImport } from './routes/api/health'
 import { Route as ApiVehiclesRouteImport } from './routes/api/vehicles'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -57,6 +62,31 @@ const ModeracaoRoute = ModeracaoRouteImport.update({
   path: '/moderacao',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosRoute = TermosRouteImport.update({
+  id: '/termos',
+  path: '/termos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VeiculosRoute = VeiculosRouteImport.update({
+  id: '/veiculos',
+  path: '/veiculos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiHealthRoute = ApiHealthRouteImport.update({
   id: '/api/health',
   path: '/api/health',
@@ -91,6 +121,11 @@ export interface FileRoutesByFullPath {
   '/dicas': typeof DicasRoute
   '/historico': typeof HistoricoRoute
   '/moderacao': typeof ModeracaoRoute
+  '/perfil': typeof PerfilRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/termos': typeof TermosRoute
+  '/veiculos': typeof VeiculosRoute
+  '/videos': typeof VideosRoute
   '/api/health': typeof ApiHealthRoute
   '/api/vehicles': typeof ApiVehiclesRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -105,6 +140,11 @@ export interface FileRoutesByTo {
   '/dicas': typeof DicasRoute
   '/historico': typeof HistoricoRoute
   '/moderacao': typeof ModeracaoRoute
+  '/perfil': typeof PerfilRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/termos': typeof TermosRoute
+  '/veiculos': typeof VeiculosRoute
+  '/videos': typeof VideosRoute
   '/api/health': typeof ApiHealthRoute
   '/api/vehicles': typeof ApiVehiclesRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -120,6 +160,11 @@ export interface FileRoutesById {
   '/dicas': typeof DicasRoute
   '/historico': typeof HistoricoRoute
   '/moderacao': typeof ModeracaoRoute
+  '/perfil': typeof PerfilRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/termos': typeof TermosRoute
+  '/veiculos': typeof VeiculosRoute
+  '/videos': typeof VideosRoute
   '/api/health': typeof ApiHealthRoute
   '/api/vehicles': typeof ApiVehiclesRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -136,6 +181,11 @@ export interface FileRouteTypes {
     | '/dicas'
     | '/historico'
     | '/moderacao'
+    | '/perfil'
+    | '/privacidade'
+    | '/termos'
+    | '/veiculos'
+    | '/videos'
     | '/api/health'
     | '/api/vehicles'
     | '/api/auth/$'
@@ -150,6 +200,11 @@ export interface FileRouteTypes {
     | '/dicas'
     | '/historico'
     | '/moderacao'
+    | '/perfil'
+    | '/privacidade'
+    | '/termos'
+    | '/veiculos'
+    | '/videos'
     | '/api/health'
     | '/api/vehicles'
     | '/api/auth/$'
@@ -164,6 +219,11 @@ export interface FileRouteTypes {
     | '/dicas'
     | '/historico'
     | '/moderacao'
+    | '/perfil'
+    | '/privacidade'
+    | '/termos'
+    | '/veiculos'
+    | '/videos'
     | '/api/health'
     | '/api/vehicles'
     | '/api/auth/$'
@@ -179,6 +239,11 @@ export interface RootRouteChildren {
   DicasRoute: typeof DicasRoute
   HistoricoRoute: typeof HistoricoRoute
   ModeracaoRoute: typeof ModeracaoRoute
+  PerfilRoute: typeof PerfilRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
+  TermosRoute: typeof TermosRoute
+  VeiculosRoute: typeof VeiculosRoute
+  VideosRoute: typeof VideosRoute
   ApiHealthRoute: typeof ApiHealthRoute
   ApiVehiclesRoute: typeof ApiVehiclesRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -237,6 +302,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModeracaoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos': {
+      id: '/termos'
+      path: '/termos'
+      fullPath: '/termos'
+      preLoaderRoute: typeof TermosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/veiculos': {
+      id: '/veiculos'
+      path: '/veiculos'
+      fullPath: '/veiculos'
+      preLoaderRoute: typeof VeiculosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/health': {
       id: '/api/health'
       path: '/api/health'
@@ -283,6 +383,11 @@ const rootRouteChildren: RootRouteChildren = {
   DicasRoute: DicasRoute,
   HistoricoRoute: HistoricoRoute,
   ModeracaoRoute: ModeracaoRoute,
+  PerfilRoute: PerfilRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
+  TermosRoute: TermosRoute,
+  VeiculosRoute: VeiculosRoute,
+  VideosRoute: VideosRoute,
   ApiHealthRoute: ApiHealthRoute,
   ApiVehiclesRoute: ApiVehiclesRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

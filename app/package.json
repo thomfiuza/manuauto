@@ -21,7 +21,8 @@
     "test:static": "python3 ../tests/test_project.py",
     "test:integration": "tsx scripts/test-integration.ts",
     "test:smoke": "python3 ../tests/http_smoke.py",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "backup": "tsx scripts/backup-local.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1113.0",

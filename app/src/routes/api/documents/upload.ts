@@ -4,8 +4,9 @@ import { and,eq } from 'drizzle-orm'
 import { auth } from '../../../lib/auth.server'
 import { db } from '../../../db/client.server'
 import { documents } from '../../../db/schema'
+import { enqueueDocument } from '../../../lib/jobs.server'
+import { audit } from '../../../lib/logger.server'
 import { storage } from '../../../lib/storage.server'
-import { processDocument } from '../../../lib/rag.server'
 import { checkRateLimit } from '../../../lib/rate-limit.server'
 const MAX_SIZE=25*1024*1024
 export const Route=createFileRoute('/api/documents/upload')({server:{handlers:{POST:async({request})=>{
@@ -27,7 +28,8 @@ export const Route=createFileRoute('/api/documents/upload')({server:{handlers:{P
  try{
   const[row]=await db.insert(documents).values({id,ownerId:session.user.id,vehicleId,title:title.trim()||file.name.replace(/\.pdf$/i,''),sourceType:'comunidade',visibility,status:'processing',storageKey:key,originalFilename:file.name,mimeType:file.type,fileSize:file.size,sha256,rightsDeclaration:visibility==='public'?'Titular declarou autorização para compartilhar':null}).returning()
   inserted=true
-  const result=await processDocument(session.user.id,row.id)
-  return Response.json({document:row,...result},{status:201})
+  await audit(session.user.id,'document.uploaded','document',row.id,{title:row.title,visibility,fileSize:file.size})
+  enqueueDocument(session.user.id,row.id)
+  return Response.json({document:row,queued:true},{status:201})
  }catch(error){if(!inserted)await storage().delete(key);throw error}
 }}}})

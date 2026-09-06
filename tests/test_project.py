@@ -10,8 +10,8 @@ class ProjectTests(unittest.TestCase):
   p=json.loads((ROOT/'app/package.json').read_text())
   for dep in ['better-auth','drizzle-orm','pg','@electric-sql/pglite','@aws-sdk/client-s3']:self.assertIn(dep,p['dependencies'])
  def test_schema_and_migration(self):
-  schema=(ROOT/'app/src/db/schema.ts').read_text();migration=next((ROOT/'app/drizzle').glob('*.sql')).read_text()
-  for token in ['documents','doc_chunks','tip_votes','vehicles','vector(1536)']:self.assertIn(token,schema if token!='vector(1536)' else migration)
+  schema=(ROOT/'app/src/db/schema.ts').read_text();migration=sorted((ROOT/'app/drizzle').glob('*.sql'))[0].read_text()
+  for token in ['documents','doc_chunks','tip_votes','vehicles','audit_log','content_norm','vector(1536)']:self.assertIn(token,schema if token!='vector(1536)' else migration)
  def test_no_real_secret_values(self):
   env=(ROOT/'app/.env.example').read_text();self.assertNotRegex(env,r'AI_API_KEY=.{20,}');self.assertIn('BETTER_AUTH_SECRET=',env)
 if __name__=='__main__':unittest.main(verbosity=2)

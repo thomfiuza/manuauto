@@ -25,21 +25,21 @@
 
 ## Próxima fase — robustez do MVP
 
-- [ ] Processamento assíncrono com fila e worker separado.
+- [x] Processamento assíncrono com fila (in-process; worker dedicado é a evolução).
 - [ ] OCR de PDFs escaneados.
 - [ ] Destaque exato do trecho no PDF.
-- [ ] Exclusão de documentos e limpeza do objeto armazenado.
-- [ ] Histórico de consultas na interface.
+- [x] Exclusão de documentos e limpeza do objeto armazenado.
+- [x] Histórico de consultas na interface.
 - [ ] Testes E2E com navegador real.
-- [ ] Rate limiting específico para upload e consulta.
-- [ ] Logs estruturados e trilha de auditoria.
-- [ ] Backup e restauração testados.
-- [ ] Termos, privacidade, LGPD e processo autoral.
-- [ ] Confirmação de solução após 7 e 30 dias.
+- [x] Rate limiting específico para upload e consulta.
+- [x] Logs estruturados e trilha de auditoria.
+- [ ] Backup e restauração testados. (script local criado; rotina de produção pendente)
+- [x] Termos, privacidade, LGPD e processo autoral.
+- [x] Confirmação de solução após a consulta (7/30 dias é evolução de acompanhamento).
 
 ## Expansão
 
-- [ ] Curadoria de vídeos e associação ao minuto do procedimento.
+- [ ] Curadoria de vídeos e associação ao minuto do procedimento. (UI criada; associação ao minuto pendente)
 - [ ] Evidências com fotos e anexos.
 - [ ] Reputação de autores e revisores.
 - [ ] Catálogo de peças.
