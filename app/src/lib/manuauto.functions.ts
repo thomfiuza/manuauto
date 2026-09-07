@@ -23,6 +23,10 @@ export const askAssistant=createServerFn({method:'POST'}).middleware([requireAut
 })
 
 export const processDocumentFn=createServerFn({method:'POST'}).middleware([requireAuth]).validator((input:unknown)=>z.object({documentId:z.string().uuid()}).parse(input)).handler(async({data,context})=>{
+  if(process.env.VERCEL){
+    const{processDocument}=await import('./rag.server')
+    return processDocument(context.userId,data.documentId)
+  }
   const{enqueueDocument}=await import('./jobs.server')
   enqueueDocument(context.userId,data.documentId)
   return{queued:true}

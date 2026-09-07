@@ -29,6 +29,13 @@ export const Route=createFileRoute('/api/documents/upload')({server:{handlers:{P
   const[row]=await db.insert(documents).values({id,ownerId:session.user.id,vehicleId,title:title.trim()||file.name.replace(/\.pdf$/i,''),sourceType:'comunidade',visibility,status:'processing',storageKey:key,originalFilename:file.name,mimeType:file.type,fileSize:file.size,sha256,rightsDeclaration:visibility==='public'?'Titular declarou autorização para compartilhar':null}).returning()
   inserted=true
   await audit(session.user.id,'document.uploaded','document',row.id,{title:row.title,visibility,fileSize:file.size})
+  // Em serverless (Vercel) o processamento roda na própria requisição:
+  // não há garantia de execução em segundo plano após a resposta.
+  if(process.env.VERCEL){
+    const{processDocument}=await import('../../../lib/rag.server')
+    const result=await processDocument(session.user.id,row.id)
+    return Response.json({document:row,...result,queued:false},{status:201})
+  }
   enqueueDocument(session.user.id,row.id)
   return Response.json({document:row,queued:true},{status:201})
  }catch(error){if(!inserted)await storage().delete(key);throw error}

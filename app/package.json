@@ -47,6 +47,7 @@
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
     "@vitejs/plugin-react": "6.0.5",
+    "nitro": "3.0.260903-beta",
     "tsx": "4.23.12",
     "typescript": "6.0.3",
     "vite": "8.2.1"

@@ -4,6 +4,7 @@ app/dist/
 app/.output/
 app/.vinxi/
 app/.tanstack/
+app/.vercel/
 
 # Dados locais e documentos privados
 app/.data/
